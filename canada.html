@@ -19,6 +19,12 @@
         body {
             color: #333;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        * {
+            -webkit-tap-highlight-color: transparent;
         }
 
         .background-image {
@@ -29,6 +35,7 @@
             left: 0;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/canada.jpg') center/cover no-repeat;
             z-index: -1;
+            transform: translateZ(0);
         }
 
         .header {
@@ -228,12 +235,13 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
             border-top: 4px solid #10778c;
+            will-change: transform;
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
         
         .feature-card h3 {
@@ -323,11 +331,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.3s ease;
+            will-change: transform;
+            backface-visibility: hidden;
         }
         
         .destination-card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .destination-name {
@@ -588,35 +598,35 @@
         <h2> Discover the Beauty of Canada</h2>
         <div class="destinations-gallery">
             <div class="destination-card">
-                <img src="img/canada.jpg" alt="Toronto">
+                <img src="img/canada.jpg" alt="Toronto" loading="lazy">
                 <div class="destination-name">Toronto – CN Tower, diverse culture, and vibrant waterfront 🏙️</div>
             </div>
             <div class="destination-card">
-                <img src="img/vancouver.jpg" alt="Vancouver">
+                <img src="img/vancouver.jpg" alt="Vancouver" loading="lazy">
                 <div class="destination-name">Vancouver – Mountains, ocean, and Pacific Northwest beauty 🌊</div>
             </div>
             <div class="destination-card">
-                <img src="img/montreal.jpg" alt="Montreal">
+                <img src="img/montreal.jpg" alt="Montreal" loading="lazy">
                 <div class="destination-name">Montreal – European charm, festivals, and French-Canadian culture 🎭</div>
             </div>
             <div class="destination-card">
-                <img src="img/quebec.jpg" alt="Quebec City">
+                <img src="img/quebec.jpg" alt="Quebec City" loading="lazy">
                 <div class="destination-name">Quebec City – Historic old town and French heritage 🏰</div>
             </div>
             <div class="destination-card">
-                <img src="img/banff.jpg" alt="Banff">
+                <img src="img/banff.jpg" alt="Banff" loading="lazy">
                 <div class="destination-name">Banff National Park – Rocky Mountains and turquoise lakes 🏔️</div>
             </div>
             <div class="destination-card">
-                <img src="img/niagara-falls.jpg" alt="Niagara Falls">
+                <img src="img/niagara-falls.jpg" alt="Niagara Falls" loading="lazy">
                 <div class="destination-name">Niagara Falls – One of the world's natural wonders 🌊</div>
             </div>
             <div class="destination-card">
-                <img src="img/whistler.jpg" alt="Whistler">
+                <img src="img/whistler.jpg" alt="Whistler" loading="lazy">
                 <div class="destination-name">Whistler – World-class skiing and mountain adventures ⛷️</div>
             </div>
             <div class="destination-card">
-                <img src="img/ottawa.jpg" alt="Ottawa">
+                <img src="img/ottawa.jpg" alt="Ottawa" loading="lazy">
                 <div class="destination-name">Ottawa – Canada's capital with Parliament Hill and museums 🏛️</div>
             </div>
         </div>
