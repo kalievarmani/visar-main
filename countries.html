@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries we serve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .background-image {
+        background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('img/countries-background.jpg') center/cover no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 40vh;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+        /* Header Styles */
+    .header {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+    }
+    .logo {
+      max-width: 60px;
+      max-height: 60px;
+      z-index: 1001;
+    }
+    .logo img {
+      width: 100%;
+      filter: invert(1);
+    }
+    .navigation {
+      display: flex;
+      gap: 20px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 20px;
+      transition: color .3s;
+    }
+    .nav a[href^="#footer"] {
+      scroll-behavior: smooth;
+    }
+    .nav a:hover {
+      color: #10778c;
+    }
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .burger-line {
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .burger-menu.active .burger-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .burger-menu.active .burger-line:nth-child(2) {
+      opacity: 0;
+    }
+    .burger-menu.active .burger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .mobile-nav.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .mobile-nav .nav {
+      margin: 15px 0;
+    }
+    .mobile-nav .nav a {
+      font-size: 24px;
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(16, 119, 140, 0.98);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .mobile-nav .nav {
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .mobile-nav .nav a {
+      font-size: 24px;
+      color: white;
+      padding: 10px 20px;
+      display: block;
+    }
+
+    .main-title {
+        color: #fff;
+        margin: 50px 0 150px 0;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .country-blocks {
+        display: grid;
+        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 150px);
+    }
+
+    .europe {
+        grid-column: 1/2;
+        grid-row: 1/3;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('img/spain.jpg') center/cover no-repeat;
+    }
+
+    .america {
+        grid-column: 2/3;
+        grid-row: 1/2;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('img/usa.jpg') center/cover no-repeat;
+    }
+
+    .asia {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('img/Japan-background.jpg') center/cover no-repeat;
+    }
+
+    .australia {
+        grid-column: 1/3;
+        grid-row: 3/4;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('img/australia.jpg') center no-repeat;
+        background-size: 100% auto;
+    }
+
+    .country-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 32px;
+        font-weight: 700;
+        padding: 10px;
+        border: 1px solid #000;
+        border-radius: 30px;
+    }
+
+    .country-list_block {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      padding: 50px;
+      margin-top: 50px;
+      border: #f2f2f2 1px solid;
+      border-radius: 20px;
+      box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .country-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+    }
+
+    .country-list_title {
+      display: flex;
+      gap: 30px;
+    }
+
+    .country-list_title img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .country-list_content {
+      width: 150px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: start;
+      font-weight: 700;
+    }
+
+    .country-list_content img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .footer-background {
+      background-color: #10778c;
+      margin-top: 10vh;
+    }
+
+    .footer {
+      padding: 30px 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .all-social {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 18px;
+      color: #fff;
+      min-width: 250px;
+    }
+    .all-social a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .all-social img {
+      width: 60px;
+      height: 70px;
+      filter: invert(1);
+    }
+    .social-icons {
+      display: flex;
+      gap: 20px;
+    }
+    .all-social ion-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .all-links {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      min-width: 200px;
+    }
+    .all-links a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .all-links h3 {
+      font-size: 22px;
+    }
+    .all-links p {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .all-contacts {
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 250px;
+    }
+    .all-contacts a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .all-contacts h3 {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .contact_icons {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .contact_icons ion-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    @media (max-width: 768px) {
+        .background-image {
+            height: 30vh;
+        }
+
+        .main-title {
+            font-size: 32px;
+            margin: 30px 0 100px 0;
+        }
+
+        .country-blocks {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(4, 120px);
+        }
+
+        .europe {
+            grid-column: 1;
+            grid-row: 1/2;
+        }
+
+        .america {
+            grid-column: 1;
+            grid-row: 2/3;
+        }
+
+        .asia {
+            grid-column: 1;
+            grid-row: 3/4;
+        }
+
+        .australia {
+            grid-column: 1;
+            grid-row: 4/5;
+        }
+
+        .country-images {
+            font-size: 24px;
+            border-radius: 15px;
+        }
+
+        .country-list_block {
+            padding: 20px;
+            margin-top: 30px;
+            gap: 30px;
+        }
+
+        .country-list_title {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .country-list_title h2 {
+            font-size: 24px;
+        }
+
+        .country-list {
+            gap: 20px;
+            justify-content: start;
+        }
+
+        .country-list_content {
+            width: 120px;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .country-list_content img {
+            width: 25px;
+            height: 25px;
+        }
+
+        .navigation {
+            display: none;
+        }
+
+        .burger-menu {
+            display: flex;
+        }
+
+        .footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .all-social,
+        .all-links,
+        .all-contacts {
+            min-width: 100%;
+            gap: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-title {
+            font-size: 28px;
+            margin: 20px 0 150px 0;
+        }
+
+        .country-blocks {
+            grid-template-rows: repeat(4, 100px);
+        }
+
+        .country-images {
+            font-size: 20px;
+        }
+
+        .country-list_block {
+            padding: 15px;
+        }
+
+        .country-list {
+            gap: 15px;
+        }
+
+        .country-list_content {
+            width: 100px;
+            font-size: 12px;
+        }
+
+        .country-list_content img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+
+    <div class="header">
+        <div class="logo">
+          <a href="index.html">
+            <img class="icon-logo" src="img/logo.png" alt="">
+          </a>
+        </div>
+        
+        <div class="burger-menu">
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+          <div class="burger-line"></div>
+        </div>
+        
+        <div class="navigation">
+          <div class="nav">
+            <a href="index.html">Home</a>
+          </div>
+          <div class="nav">
+            <a href="countries.html">Countries</a>
+          </div>
+          <div class="nav">
+            <a href="about.html">About</a>
+          </div>
+          <div class="nav">
+            <a href="#footer">Contact</a>
+          </div>
+        </div>
+        
+        <div class="mobile-nav">
+          <div class="nav">
+            <a href="index.html">Home</a>
+          </div>
+          <div class="nav">
+            <a href="countries.html">Countries</a>
+          </div>
+          <div class="nav">
+            <a href="about.html">About</a>
+          </div>
+          <div class="nav">
+            <a href="#footer">Contact</a>
+          </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="main-title">Countries we assist</h2>
+        <div class="country-blocks">
+            <div class="country-images europe">Europe</div>
+            <div class="country-images america">America</div>
+            <div class="country-images asia">Asia</div>
+            <div class="country-images australia">Australia</div>
+        </div>
+    </div>
+
+    <div class="container">
+      <section class="country-list_block">
+        <div class="country-list_title">
+          <img src="img/european.png" alt="">
+          <h2>Europe</h2>
+        </div>
+        <div class="country-list">
+          <div class="country-list_content">
+            <img src="img/austria.png" alt="">
+            <p>Austria</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/denmark.png" alt="">
+            <p>Denmark</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/lithuania.png" alt="">
+            <p>Lithuania</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/portugal.png" alt="">
+            <p>Portugal</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/croatia.png" alt="">
+            <p>Croatia</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/belgium.png" alt="">
+            <p>Belgium</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/iceland.png" alt="">
+            <p>Iceland</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/luxembourg.png" alt="">
+            <p>Luxembourg</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/romania.png" alt="">
+            <p>Romania</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/czech-republic.png" alt="">
+            <p>Czech Republic</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/bulgaria.png" alt="">
+            <p>Bulgaria</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/spain.png" alt="">
+            <p>Spain</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/malta.png" alt="">
+            <p>Malta</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/slovakia.png" alt="">
+            <p>Slovakia</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/switzerland.png" alt="">
+            <p>Switzerland</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/hungary.png" alt="">
+            <p>Hungary</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/italy.png" alt="">
+            <p>Italy</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/netherlands.png" alt="">
+            <p>Netherlands</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/slovenia.png" alt="">
+            <p>Slovenia</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/sweeden.png" alt="">
+            <p>Sweden</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/germany.png" alt="">
+            <p>Germany</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/cyprus.png" alt="">
+            <p>Cyprus</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/norway.png" alt="">
+            <p>Norway</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/finland.png" alt="">
+            <p>Finland</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/estonia.png" alt="">
+            <p>Estonia</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/greece.png" alt="">
+            <p>Greece</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/latvia.png" alt="">
+            <p>Latvia</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/poland.png" alt="">
+            <p>Poland</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/france.png" alt="">
+            <p>France</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="country-list_block">
+        <div class="country-list_title">
+          <img src="img/uk.png" alt="">
+          <h2>United Kingdom</h2>
+        </div>
+        <div class="country-list">
+          <div class="country-list_content">
+            <img src="img/uk.png" alt="">
+            <p>United Kingdom</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/ireland.png" alt="">
+            <p>Ireland</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="country-list_block">
+        <div class="country-list_title">
+          <img src="img/australia.png" alt="">
+          <h2>Australia</h2>
+        </div>
+        <div class="country-list">
+          <div class="country-list_content">
+            <img src="img/australia.png" alt="">
+            <p>Australia</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="country-list_block">
+        <div class="country-list_title">
+          <img src="img/usa.png" alt="">
+          <h2>America</h2>
+        </div>
+        <div class="country-list">
+          <div class="country-list_content">
+            <img src="img/canada.png" alt="">
+            <p>Canada</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/mexico.png" alt="">
+            <p>Mexico</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/usa.png" alt="">
+            <p>USA</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="country-list_block">
+        <div class="country-list_title">
+          <img src="img/china.png" alt="">
+          <h2>Asia</h2>
+        </div>
+        <div class="country-list">
+          <div class="country-list_content">
+            <img src="img/algeria.png" alt="">
+            <p>Algeria</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/iran.png" alt="">
+            <p>Iran</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/nepal_9906497.png" alt="">
+            <p>Nepal</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/taiwan.png" alt="">
+            <p>Taiwan</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/japan.png" alt="">
+            <p>Japan</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/vietnam.png" alt="">
+            <p>Vietnam</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/singapore.png" alt="">
+            <p>Singapore</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/philippines.png" alt="">
+            <p>Phillipines</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/india.png" alt="">
+            <p>India</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/thailand.png" alt="">
+            <p>Thailand</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/china.png" alt="">
+            <p>China</p>
+          </div>
+          <div class="country-list_content">
+            <img src="img/south-korea.png" alt="">
+            <p>South Korea</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="footer-background">
+        <div class="container">
+          <section id="footer" class="footer">
+            <div class="all-social">
+              <a href="index.html">
+                <img src="img/logo.png" alt="">
+              </a>
+              <P>Wizar is your reliable assistant <br>in solving visa problems</P>
+              <div class="social-icons">
+                <a href="https://wa.me/971589334401">
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                </a>                
+                <a href="#">
+                  <ion-icon name="mail-outline"></ion-icon>
+                </a>               
+                <a href="#">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </div>
+            </div>
+            <div class="all-links">
+              <h3>Quick Links</h3>
+              <a href="index.html">
+                <p>Home</p>
+              </a>
+              <a href="countries.html">
+                <p>Countries</p>
+              </a>
+              <a href="about.html">
+                <p>About Us</p>
+              </a>
+              <a href="#footer">
+                <p>Contact</p>
+              </a>
+            </div>
+            
+            <div class="all-contacts">
+            <h3>Contact Us</h3>
+
+            <a href="tel:971589334401">
+              <div class="contact_icons">
+                <div class="contact_icons_inner">
+                  <ion-icon name="call-outline"></ion-icon>
+                </div>
+                <p>971589334401</p>
+              </div>
+            </a>
+
+            <a href="mailto:vizaruae@gmail.com">
+              <div class="contact_icons">
+                <div class="contact_icons_inner">
+                  <ion-icon name="mail-outline"></ion-icon>
+                </div>
+                <p>vizaruae@gmail.com</p>
+              </div>
+            </a>
+
+            <a href="https://maps.google.com/?q=Meydan+Grandstand+Dubai" target="_blank" rel="noopener">
+              <div class="contact_icons">
+                <div class="contact_icons_inner">
+                  <ion-icon name="compass-outline"></ion-icon>
+                </div>
+                <p>
+                  Meydan Grandstand, 6th floor,
+                  Meydan Road, Nad Al Sheba,
+                  Dubai, United Arab Emirates
+                </p>
+              </div>
+            </a>
+          </div>
+
+          </section>
+        </div>
+      </div>
+
+      <script>
+        // Burger Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+          const burgerMenu = document.querySelector('.burger-menu');
+          const mobileNav = document.querySelector('.mobile-nav');
+          
+          burgerMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            
+            // Блокировка скролла при открытом меню
+            if (mobileNav.classList.contains('active')) {
+              document.body.style.overflow = 'hidden';
+            } else {
+              document.body.style.overflow = '';
+            }
+          });
+          
+          // Закрытие меню при клике на ссылку
+          const navLinks = document.querySelectorAll('.mobile-nav .nav a');
+          navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+              burgerMenu.classList.remove('active');
+              mobileNav.classList.remove('active');
+              document.body.style.overflow = '';
+            });
+          });
+        });
+      </script>
+</body>
+</html>

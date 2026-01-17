@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australia Visa Made Simple with VIZAR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .background-image {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/australia.jpg') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        .header {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .logo {
+            max-width: 60px;
+            max-height: 60px;
+            z-index: 1001;
+        }
+
+        .logo img {
+            width: 100%;
+            filter: invert(1);
+        }
+
+        .navigation {
+            display: flex;
+            gap: 20px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            transition: color .3s;
+        }
+
+        .nav a[href^="#footer"] {
+            scroll-behavior: smooth;
+        }
+
+        .nav a:hover {
+        color: #10778c;
+        }
+    
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .burger-line {
+            width: 100%;
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(16, 119, 140, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .mobile-nav.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .mobile-nav .nav {
+            margin: 15px 0;
+        }
+        .mobile-nav .nav a {
+            font-size: 24px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+
+        h1 {
+            color: #fff;
+        }
+        
+        h2, h3 {
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #10778c; /* Australian blue */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #10778c;
+            transform: translateY(-2px);
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #10778c, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+        
+        /* Hero Section */
+        .hero {
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Intro Section */
+        .intro {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        .intro h2 {
+            color: #10778c;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: #f9f9f9;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #10778c;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card h3 {
+            color: #10778c;
+        }
+        
+        /* Process Section */
+        .process-steps {
+            counter-reset: step-counter;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+        
+        .step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 30px;
+        }
+        
+        .step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #10778c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Documents Section */
+        .documents {
+            background-color: #f9f9f9;
+        }
+        
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .document-item {
+            background: white;
+            padding: 20px;
+            border-left: 4px solid #10778c;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #10778c;
+            margin-bottom: 10px;
+        }
+        
+        /* Destinations Gallery */
+        .destinations-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .destination-card {
+            position: relative;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .destination-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .destination-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+        
+        /* Visa Types */
+        .visa-types {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .visa-type {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 200px;
+            border-top: 4px solid #10778c;
+        }
+        
+        .visa-type h3 {
+            color: #10778c;
+            margin-bottom: 10px;
+        }
+        
+        .footer-background {
+            background-color: #10778c;
+            margin-top: 10vh;
+        }
+
+        .footer {
+            padding: 30px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .all-social {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .all-social a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .all-social img {
+            width: 60px;
+            height: 70px;
+            filter: invert(1);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .all-social ion-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .all-links {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        .all-links h3 {
+            color: #fff;
+        }
+
+        .all-links a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .all-links h3 {
+            font-size: 22px;
+        }
+
+        .all-links p {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .all-contacts {
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .all-contacts a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .all-contacts h3 {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .contact_icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .contact_icons_inner ion-icon {
+             font-size: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .navigation {
+                display: none;
+            }
+
+            .header, .container {
+                padding: 0 20px;
+            }
+
+            .header {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .navigation {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .visa-types {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 30px;
+                align-items: start;
+                text-align: start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-image"></div>
+
+    <div class="header">
+      <div class="logo">
+        <a href="index.html">
+          <img class="icon-logo" src="img/logo.png" alt="">
+        </a>
+      </div>
+      
+      <div class="burger-menu">
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+      </div>
+      
+      <div class="navigation">
+        <div class="nav">
+          <a href="index.html">Home</a>
+        </div>
+        <div class="nav">
+          <a href="about.html">About Us</a>
+        </div>
+        <div class="nav">
+          <a href="countries.html">Countries</a>
+        </div>
+        <div class="nav">
+          <a href="#footer">Contact</a>
+        </div>
+      </div>
+      
+      <div class="mobile-nav">
+        <div class="nav">
+          <a href="index.html">Home</a>
+        </div>
+        <div class="nav">
+          <a href="about.html">About Us</a>
+        </div>
+        <div class="nav">
+          <a href="countries.html">Countries</a>
+        </div>
+        <div class="nav">
+          <a href="#footer">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Australia Visa Made Simple with VIZAR</h1>
+            <p>Let VIZAR take care of your entire Australian visa process – from documents to application and beyond.</p>
+            <p><strong>Fast. Simple. Stress-free.</strong></p>
+            <a href="https://wa.me/971589334401" class="btn">Start Your Visa Journey</a>
+        </div>
+    </section>
+    
+    <!-- Intro Section -->
+    <section class="intro">
+        <div class="container">
+            <h2>Dreaming of Australia?</h2>
+            <p>Australia is a world of contrasts – from iconic city skylines to endless outback horizons.</p>
+            <p>Swim in the Great Barrier Reef, stroll through vibrant Sydney, or witness the magic of Uluru at sunset. 🇦🇺✨</p>
+        </div>
+    </section>
+    
+    <!-- What is Australia Visa Section -->
+    <section class="container">
+        <h2> What is an Australia Visa?</h2>
+        <p>An Australian visa allows you to explore the Land Down Under – whether for tourism, business, family visits or studies.</p>
+        <p><strong>One visa – unforgettable experiences across beaches, wildlife, cities, and natural wonders.</strong></p>
+        
+        <hr class="divider">
+        
+        <h2>Discover the Spirit of Australia</h2>
+        <div class="destinations-gallery">
+            <div class="destination-card">
+                <img src="img/sydney.jpg" alt="Sydney">
+                <div class="destination-name">Sydney – Opera House, Harbour Bridge, beaches and buzzing nightlife</div>
+            </div>
+            <div class="destination-card">
+                <img src="img/melbourne.jpg" alt="Melbourne">
+                <div class="destination-name">Melbourne – Art, coffee culture, sports and hidden laneways</div>
+            </div>
+            <div class="destination-card">
+                <img src="img/gold-coast.jpg" alt="Gold Coast">
+                <div class="destination-name">Gold Coast – Surf, sunshine and family attractions</div>
+            </div>
+            <div class="destination-card">
+                <img src="img/ocean-road.jpg" alt="Great Ocean Road">
+                <div class="destination-name">Great Ocean Road – One of the world’s most scenic drives</div>
+            </div>
+            <div class="destination-card">
+                <img src="img/cairns.jpg" alt="Cairns">
+                <div class="destination-name">Cairns – Gateway to the Great Barrier Reef and tropical rainforest</div>
+            </div>
+            <div class="destination-card">
+                <img src="img/perth.jpg" alt="Perth">
+                <div class="destination-name">Perth – Indian Ocean Sunsets</div>
+            </div>
+            <div class="destination-card">
+                <img src="img/uluru.jpg" alt="Uluru">
+                <div class="destination-name">Uluru – Laid-back vibes and stunning Indian Ocean sunsets</div>
+            </div>
+            <div class="destination-card">
+                <img src="img/barier-reff.jpg" alt="Great Barrier Reef">
+                <div class="destination-name">Great Barrier Reef</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Visa Types Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Types of Australian Visas</h2>
+            <div class="visa-types">
+                <div class="visa-type">
+                    <h3>Tourist Visa</h3>
+                    <p>(Visitor Subclass 600)</p>
+                </div>
+                <div class="visa-type">
+                    <h3>Business Visitor Visa</h3>
+                    <p>For business activities</p>
+                </div>
+                <div class="visa-type">
+                    <h3>Family Visit Visa</h3>
+                    <p>Visit relatives in Australia</p>
+                </div>
+                <div class="visa-type">
+                    <h3>Student Visa</h3>
+                    <p>For study purposes</p>
+                </div>
+                <div class="visa-type">
+                    <h3>Medical Treatment Visa</h3>
+                    <p>For medical care</p>
+                </div>
+            </div>
+            <p><strong>📌</strong> Tourist visas are usually valid for 3, 6, or 12 months depending on your travel history and purpose.</p>
+            <p><strong>📌</strong> Multiple-entry visas may be granted to frequent travellers.</p>
+            <p><strong>📌</strong> Priority processing may be available for eligible applicants.</p>
+        </div>
+    </section>
+    
+    <!-- Documents Section -->
+    <section class="documents">
+        <div class="container">
+            <h2>Key Documents Required</h2>
+            <div class="documents-grid">
+                <div class="document-item">
+                    <h3>Valid passport</h3>
+                    <p>With sufficient validity period.</p>
+                </div>
+                <div class="document-item">
+                    <h3>UAE residence visa + Emirates ID</h3>
+                    <p>For UAE residents applying.</p>
+                </div>
+                <div class="document-item">
+                    <h3>No Objection Certificate (NOC)</h3>
+                    <p>Required if you're employed.</p>
+                </div>
+                <div class="document-item">
+                    <h3>Trade Licence</h3>
+                    <p>If you're self-employed.</p>
+                </div>
+                <div class="document-item">
+                    <h3>Bank statements</h3>
+                    <p>Past 6 months showing funds.</p>
+                </div>
+                <div class="document-item">
+                    <h3>Passport-sized photo</h3>
+                    <p>35×45 mm, white background.</p>
+                </div>
+                <div class="document-item">
+                    <h3>Invitation letter</h3>
+                    <p>If applying for business or visitor visa.</p>
+                </div>
+            </div>
+            
+            <p><strong>📌</strong> No need to submit your original passport – all documents are uploaded online.</p>
+            
+            <hr class="divider">
+            
+            <h3>Special Categories</h3>
+            <p>Applicants may need additional or alternative documents based on their profile:</p>
+            <ul>
+                <li>Children and minors / students</li>
+                <li>Non-working applicants</li>
+                <li>Housewives and domestic staff</li>
+                <li>Business owners and property investors</li>
+                <li>Golden Visa holders and talented individuals</li>
+                <li>Pensioners and retirees</li>
+            </ul>
+            <p><strong>📌</strong> We'll assess your profile and provide a customised document checklist.</p>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="container">
+        <h2> Our Comprehensive Visa Services</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Australia visa application support</h3>
+                <p>Expert guidance through the entire process.</p>
+            </div>
+            <div class="feature-card">
+                <h3>ImmiAccount creation</h3>
+                <p>And form submission assistance.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Visa fee payment assistance</h3>
+                <p>Help with all government payments.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Health insurance</h3>
+                <p>Arranged if applicable to your visa.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Flight and hotel reservations</h3>
+                <p>For your visa application needs.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Tailored travel itinerary</h3>
+                <p>Customized to your plans.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Professional cover letter</h3>
+                <p>To strengthen your application.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Full consultation</h3>
+                <p>And case review by experts.</p>
+            </div>
+        </div>
+        
+        <p><strong>📌</strong> Australia visa applications are fully online – but you must attend the visa application centre to provide biometrics.</p>
+    </section>
+    
+    <!-- Process Section -->
+    <section class="features">
+        <div class="container">
+            <h2> Your Visa Process – Step by Step</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <h3>Initial Consultation</h3>
+                    <p>We review your case and explain every step.</p>
+                </div>
+                <div class="step">
+                    <h3>Document Support</h3>
+                    <p>We help prepare and format your file.</p>
+                </div>
+                <div class="step">
+                    <h3>Application Submission</h3>
+                    <p>Complete, accurate and fully uploaded.</p>
+                </div>
+                <div class="step">
+                    <h3>Biometrics</h3>
+                    <p>Scheduled at the visa application centre.</p>
+                </div>
+                <div class="step">
+                    <h3>Visa Issued</h3>
+                    <p>You're ready to discover Australia!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Processing Time Section -->
+    <section class="container">
+        <h2> Processing Time</h2>
+        <p>Most Australia visitor visas are processed in 15–30 days.</p>
+        <p>However, timing may vary depending on your nationality and travel history.</p>
+        
+        <p><strong>📌</strong> Priority options may be available for some categories or urgent travel.</p>
+        <p><strong>📌</strong> We recommend applying at least 4–6 weeks before your intended trip.</p>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="documents">
+        <div class="container">
+            <h2> Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">Is the application online?</div>
+                <p>Yes, all Australia visa applications are submitted online through ImmiAccount.</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need confirmed bookings?</div>
+                <p>No. We can provide temporary bookings valid for your visa file.</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is health insurance required?</div>
+                <p>For some visa types, yes. We'll advise if it's needed in your case.</p>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What if my visa is denied?</div>
+                <p>We'll help you understand the refusal reason and assist with a stronger reapplication.</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="footer-background">
+  <div class="container">
+    <section id="footer" class="footer">
+      <div class="all-social">
+        <a href="index.html"><img src="img/logo.png" alt=""></a>
+        <p>Wizar is your reliable assistant <br>in solving visa problems</p>
+        <div class="social-icons">
+          <a href="https://wa.me/971589334401"><ion-icon name="logo-whatsapp"></ion-icon></a>                
+          <a href="mailto:vizaruae@gmail.com"><ion-icon name="mail-outline"></ion-icon></a>               
+          <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+      </div>
+      <div class="all-links">
+        <h3>Quick Links</h3>
+        <a href="index.html"><p>Home</p></a>
+        <a href="countries.html"><p>Countries</p></a>
+        <a href="about.html"><p>About Us</p></a>
+        <a href="#footer"><p>Contact</p></a>
+      </div>
+      
+      <div class="all-contacts">
+            <h3>Contact Us</h3>
+
+            <a href="tel:971589334401">
+              <div class="contact_icons">
+                <div class="contact_icons_inner">
+                  <ion-icon name="call-outline"></ion-icon>
+                </div>
+                <p>971589334401</p>
+              </div>
+            </a>
+
+            <a href="mailto:vizaruae@gmail.com">
+              <div class="contact_icons">
+                <div class="contact_icons_inner">
+                  <ion-icon name="mail-outline"></ion-icon>
+                </div>
+                <p>vizaruae@gmail.com</p>
+              </div>
+            </a>
+
+            <a href="https://maps.google.com/?q=Meydan+Grandstand+Dubai" target="_blank" rel="noopener">
+              <div class="contact_icons">
+                <div class="contact_icons_inner">
+                  <ion-icon name="compass-outline"></ion-icon>
+                </div>
+                <p>
+                  Meydan Grandstand, 6th floor,
+                  Meydan Road, Nad Al Sheba,
+                  Dubai, United Arab Emirates
+                </p>
+              </div>
+            </a>
+          </div>
+
+    </section>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const burgerMenu = document.querySelector('.burger-menu');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    burgerMenu.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
+
+    const navLinks = document.querySelectorAll('.mobile-nav .nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        burgerMenu.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  });
+</script>
+</body>
+</html>
